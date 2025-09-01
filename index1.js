@@ -24,7 +24,7 @@ const displayData = (section) => {
 };
 
 const addProduct = (name, price, stock) => {
-  if (!name || price < 0 || stock < 0) {
+   if (!name || price < 0 || stock < 0) {
     console.log("Invalid product data. Please check name, price, and stock.");
     return;
   }
@@ -33,7 +33,19 @@ const addProduct = (name, price, stock) => {
   console.log(`Product "${name}" added successfully!`);
 };
 
+const deleteProduct = (name) => {
+  const index = ECommerceDB.Products.findIndex(p => p.name === name);
+  if (index !== -1) {
+    ECommerceDB.Products.splice(index, 1);
+    console.log(`Product "${name}" deleted successfully!`);
+  } else {
+    console.log(`Product "${name}" not found.`);
+  }
+};
+
 displayData("Products");
 addProduct("Tablet", 600, 12);
 addProduct("Mouse", 25, 50);
+displayData("Products");
+deleteProduct("Phone");
 displayData("Products");
